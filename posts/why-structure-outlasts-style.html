@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Data Structure Outlasts Interface Style — Ritesh Diwan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            /* Colors */
+            --black: #0a0a0a;
+            --white: #fafaf8;
+            --grey: #888;
+            --light-grey: #ddd;
+            --accent: #ff6600;
+            --text-main: #0a0a0a;
+            --text-muted: #444;
+            --header-bg: #fafaf8;
+            --code-bg: #f3f2ee;
+            
+            /* Fonts */
+            --mono: 'DM Mono', monospace;
+            --serif: 'Playfair Display', serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+
+        body.dark {
+            --black: #f0ede8;
+            --white: #111110;
+            --grey: #666;
+            --light-grey: #2a2a2a;
+            --accent: #ff6600;
+            --text-main: #f0ede8;
+            --text-muted: #aaa;
+            --header-bg: #111110;
+            --code-bg: #1a1a19;
+        }
+
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--white);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        header, article, footer, .theme-btn, nav a {
+            transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* HEADER */
+        header {
+            border-bottom: 2px solid var(--text-main);
+            position: sticky;
+            top: 0;
+            background: var(--header-bg);
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            height: 56px;
+        }
+
+        .site-name {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        nav { display: flex; align-items: center; gap: 0; }
+
+        nav a, .theme-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--grey);
+            text-decoration: none;
+            padding: 0 1.25rem;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            border-left: 1px solid var(--light-grey);
+            cursor: pointer;
+            background: none;
+            border-top: none; border-right: none; border-bottom: none;
+        }
+
+        nav a:hover, .theme-btn:hover { 
+            color: var(--text-main); 
+            background: var(--light-grey); 
+            opacity: 0.8;
+        }
+
+        .theme-btn {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: bold;
+            transition: transform 0.1s ease;
+        }
+
+        .theme-btn:active {
+            transform: translateY(2px);
+        }
+
+        /* ARTICLE LAYOUT */
+        .article-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--grey);
+            text-decoration: none;
+            margin-bottom: 3rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        .post-header {
+            margin-bottom: 3.5rem;
+            border-bottom: 1px solid var(--light-grey);
+            padding-bottom: 2rem;
+        }
+
+        .post-meta {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--grey);
+            margin-bottom: 1.25rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .post-title {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        /* TYPOGRAPHY IN ESSAY BODY */
+        .post-content {
+            font-family: var(--sans);
+            font-size: 1.08rem;
+            line-height: 1.85;
+            color: var(--text-muted);
+        }
+
+        .post-content p {
+            margin-bottom: 2rem;
+        }
+
+        .post-content h2 {
+            font-family: var(--serif);
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-main);
+            margin-top: 3.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .post-content h3 {
+            font-family: var(--sans);
+            font-size: 1.3rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-main);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-content ul, .post-content ol {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin-bottom: 0.75rem;
+        }
+
+        .post-content blockquote {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.25rem;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+            margin: 2.5rem 0;
+            color: var(--text-main);
+        }
+
+        .post-content code {
+            font-family: var(--mono);
+            font-size: 0.88em;
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            color: var(--accent);
+        }
+
+        .post-content pre {
+            background-color: var(--code-bg);
+            padding: 1.5rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 2.5rem 0;
+            border: 1px solid var(--light-grey);
+        }
+
+        .post-content pre code {
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer { background: var(--black); color: var(--white); transition: background 0.4s ease; }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #666;
+        }
+
+        .footer-dot {
+            width: 6px;
+            height: 6px;
+            background: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .footer-status {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* FADE IN */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav a { display: none; }
+            nav a:last-child, .theme-btn { display: flex; }
+            .article-container { padding: 3rem 1.25rem 5rem; }
+            .post-title { font-size: clamp(2rem, 6vw, 3rem); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in { opacity: 1; transform: none; transition: none; }
+            .footer-dot { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="switchSound" src="../click.mp3" preload="auto"></audio>
+
+    <header>
+        <div class="header-inner">
+            <a href="../index.html" class="site-name">Ritesh Diwan</a>
+            <nav role="navigation">
+                <a href="../index.html#projects">Projects</a>
+                <a href="../index.html#about">About</a>
+                <a href="../blog.html">Blog</a>
+                <a href="../index.html#contact">Contact</a>
+                <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">☼</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <article class="article-container fade-in">
+            <a href="../blog.html" class="back-link">← Back to Blog</a>
+            
+            <header class="post-header">
+                <div class="post-meta">
+                    <span>Oct 24, 2025</span>
+                    <span>•</span>
+                    <span>4 Min Read</span>
+                </div>
+                <h1 class="post-title">Why Data Structure Outlasts Interface Style</h1>
+            </header>
+
+            <div class="post-content">
+                <p>
+                    In product design, visual style is fleeting. Color harmonies shift, container corners oscillate between rounded and sharp, and typography trends migrate from heavy neo-grotesques to editorial serifs. If the core argument of a web application is built strictly around its stylistic aesthetics, it has a built-in expiration date.
+                </p>
+
+                <p>
+                    However, the data model that sits beneath the screen is remarkably resilient. When you design the relational mappings, entity attributes, and state flows of a system before writing a single CSS rule, you establish a blueprint that can survive a decade of aesthetic redesigns.
+                </p>
+
+                <blockquote>
+                    "Design the data model before the interface. Structure outlasts style."
+                </blockquote>
+
+                <h2>The Anatomy of Spec Sheets</h2>
+                <p>
+                    Take my work building <a href="https://simplycars.in" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 500;">SimplyCars.in</a> as a practical example. The layout displays manufacturer detail cards, variants, specs, and engines. The interface itself could be a CLI, an Excel spreadsheet, or a highly polished, responsive grid. 
+                </p>
+                <p>
+                    What makes the product functional is the underlying relational schema in Firestore:
+                </p>
+
+                <pre><code>// Conceptual relation mapping
+const VariantSchema = {
+    id: "uuid-1234",
+    name: "Aventador SVJ",
+    engineId: "engine-v12-6.5",
+    specifications: {
+        powerBhp: 770,
+        torqueNm: 720,
+        driveTrain: "AWD"
+    }
+};</code></pre>
+
+                <p>
+                    Because this model mimics the physical realities of the automotive industry (where variants belong to models, models belong to makes, and engines are shared assets), the data remains clean. If I decide tomorrow to change the orange accent to blue or introduce cards instead of list rows, the data remains unaffected.
+                </p>
+
+                <h2>How to Focus on Structure First</h2>
+                
+                <ol>
+                    <li><strong>Determine the Entities:</strong> Draw out your domain model. What are the nouns in your application? (e.g., User, Article, Tag, Project).</li>
+                    <li><strong>Define the Relations:</strong> Establish cardinality. Does an Article have many Tags? Does a Variant reference a single Engine?</li>
+                    <li><strong>Write Schema Checks:</strong> Validate your inputs at the database boundary before allowing them to propagate to client-side views.</li>
+                </ol>
+
+                <p>
+                    Aesthetic is not decoration — it is a product's argument for its utility. But without a clean data structure to back up that argument, the interface is simply empty window dressing.
+                </p>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-left" id="footerClock">© 2025 Ritesh Diwan</span>
+            <span class="footer-status">
+                <span class="footer-dot"></span>
+                All systems operational
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Dark Mode Logic
+        const themeBtn = document.getElementById('themeBtn');
+        const switchSound = document.getElementById('switchSound');
+        const savedTheme = localStorage.getItem('rd-theme');
+        
+        const updateIcon = (isDark) => {
+            themeBtn.textContent = isDark ? '☾' : '☼';
+        };
+
+        if (savedTheme === 'dark') { 
+            document.body.classList.add('dark'); 
+            updateIcon(true);
+        }
+
+        themeBtn.addEventListener('click', () => {
+            switchSound.currentTime = 0;
+            switchSound.play().catch(e => console.log("Sound play blocked by browser."));
+
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            
+            updateIcon(isDark);
+            localStorage.setItem('rd-theme', isDark ? 'dark' : 'light');
+        });
+
+        // Dynamic Footer Clock (IST)
+        function updateTime() {
+            const footerClock = document.getElementById('footerClock');
+            const now = new Date();
+            const options = { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit',
+                timeZone: 'Asia/Kolkata',
+                hour12: false 
+            };
+            const timeString = now.toLocaleTimeString('en-GB', options);
+            footerClock.textContent = `© 2025 Ritesh Diwan — IST ${timeString}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+</html>
