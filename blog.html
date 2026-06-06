@@ -3,533 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritesh Diwan — Blog</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        :root {
-            /* Colors */
-            --black: #0a0a0a;
-            --white: #fafaf8;
-            --grey: #888;
-            --light-grey: #ddd;
-            --accent: #ff6600;
-            --text-main: #0a0a0a;
-            --text-muted: #555;
-            --header-bg: #fafaf8;
-            
-            /* Fonts */
-            --mono: 'DM Mono', monospace;
-            --serif: 'Playfair Display', serif;
-            --sans: 'DM Sans', sans-serif;
-        }
-
-        body.dark {
-            --black: #f0ede8;
-            --white: #111110;
-            --grey: #666;
-            --light-grey: #2a2a2a;
-            --accent: #ff6600;
-            --text-main: #f0ede8;
-            --text-muted: #999;
-            --header-bg: #111110;
-        }
-
-        html { font-size: 16px; scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--sans);
-            background: var(--white);
-            color: var(--text-main);
-            -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        header, section, .blog-row, .theme-btn, nav a, .contact-link-row {
-            transition: border-color 0.4s ease, background-color 0.4s ease, color 0.4s ease;
-        }
-
-        /* HEADER */
-        header {
-            border-bottom: 2px solid var(--text-main);
-            position: sticky;
-            top: 0;
-            background: var(--header-bg);
-            z-index: 100;
-        }
-
-        .header-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            align-items: center;
-            height: 56px;
-        }
-
-        .site-name {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--text-main);
-            text-decoration: none;
-        }
-
-        nav { display: flex; align-items: center; gap: 0; }
-
-        nav a, .theme-btn {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--grey);
-            text-decoration: none;
-            padding: 0 1.25rem;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            border-left: 1px solid var(--light-grey);
-            cursor: pointer;
-            background: none;
-            border-top: none; border-right: none; border-bottom: none;
-        }
-
-        nav a:hover, .theme-btn:hover { 
-            color: var(--text-main); 
-            background: var(--light-grey); 
-            opacity: 0.8;
-        }
-
-        .theme-btn {
-            font-size: 1.1rem;
-            color: var(--text-main);
-            font-weight: bold;
-            transition: transform 0.1s ease;
-        }
-
-        .theme-btn:active {
-            transform: translateY(2px);
-        }
-
-        /* HERO */
-        .hero {
-            border-bottom: 2px solid var(--text-main);
-            padding: 5rem 0 4rem;
-        }
-
-        .hero-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 340px;
-            gap: 4rem;
-            align-items: end;
-        }
-
-        .hero-label {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--grey);
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-name {
-            font-family: var(--serif);
-            font-size: clamp(3.5rem, 7vw, 6.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-name em { font-style: italic; font-weight: 400; }
-
-        .highlight-box {
-            position: absolute;
-            background-color: var(--accent);
-            z-index: -1;
-            left: -0.05em;
-            height: 0.9em;
-            animation: scannerLoop 6s infinite cubic-bezier(0.65, 0, 0.35, 1);
-        }
-
-        @keyframes scannerLoop {
-            0%, 5% { width: 0; top: 0.1em; }
-            10%, 40% { width: 102%; top: 0.1em; }
-            45% { width: 0; top: 0.1em; left: -0.05em; }
-            50% { width: 0; top: 1.15em; left: -0.05em; }
-            55%, 90% { width: 105%; top: 1.15em; }
-            95%, 100% { width: 0; top: 1.15em; }
-        }
-
-        .hero-tagline {
-            margin-top: 2rem;
-            font-size: 1.05rem;
-            font-weight: 300;
-            line-height: 1.65;
-            color: var(--text-muted);
-            max-width: 520px;
-        }
-
-        .hero-meta-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0.6rem 0;
-            border-top: 1px solid var(--light-grey);
-        }
-
-        .hero-meta-row:last-child { border-bottom: 1px solid var(--light-grey); }
-
-        .meta-label {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--grey);
-        }
-
-        .meta-value {
-            font-family: var(--mono);
-            font-size: 0.72rem;
-            font-weight: 500;
-        }
-
-        /* SECTION STRUCTURE */
-        section { border-bottom: 2px solid var(--text-main); }
-
-        .section-header {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            align-items: center;
-            height: 48px;
-            border-bottom: 1px solid var(--text-main);
-        }
-
-        .section-index {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--grey);
-        }
-
-        .section-title-label {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .section-body {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3.5rem 2rem;
-        }
-
-        /* BLOG LIST */
-        .blog-row {
-            display: grid;
-            grid-template-columns: 200px 1fr auto;
-            gap: 2rem;
-            align-items: start;
-            padding: 2.5rem 0;
-            border-bottom: 1px solid var(--light-grey);
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .blog-row:last-child { border-bottom: none; }
-
-        .blog-row:hover .blog-name {
-            color: var(--accent);
-        }
-
-        .blog-date {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.15em;
-            color: var(--grey);
-            padding-top: 0.3rem;
-            text-transform: uppercase;
-        }
-
-        .blog-name {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 700;
-            font-style: italic;
-            line-height: 1.1;
-            margin-bottom: 0.75rem;
-            transition: color 0.2s ease;
-        }
-
-        .blog-desc {
-            font-size: 0.9rem;
-            font-weight: 300;
-            line-height: 1.7;
-            color: var(--text-muted);
-            max-width: 560px;
-            margin-bottom: 1.25rem;
-        }
-
-        .blog-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-
-        .tag {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            border: 1px solid var(--text-main);
-            padding: 0.2rem 0.6rem;
-            opacity: 0.7;
-            color: var(--text-main);
-        }
-
-        .blog-link {
-            font-family: var(--mono);
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-main);
-            text-decoration: none;
-            border: 1px solid var(--text-main);
-            padding: 0.5rem 1rem;
-            white-space: nowrap;
-            display: inline-block;
-            align-self: start;
-            margin-top: 0.3rem;
-            transition: background-color 0.2s, color 0.2s;
-        }
-
-        .blog-row:hover .blog-link {
-            background: var(--text-main);
-            color: var(--white);
-        }
-
-        /* FOOTER */
-        footer { background: var(--black); color: var(--white); transition: background 0.4s ease; }
-
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-left {
-            font-family: var(--mono);
-            font-size: 0.62rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: #666;
-        }
-
-        .footer-dot {
-            width: 6px;
-            height: 6px;
-            background: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            margin-right: 0.5rem;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .footer-status {
-            font-family: var(--mono);
-            font-size: 0.6rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: #555;
-            display: flex;
-            align-items: center;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-
-        /* FADE IN */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity 0.55s ease, transform 0.55s ease;
-        }
-
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .hero-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-            .section-header { grid-template-columns: 100px 1fr; }
-            .blog-row { grid-template-columns: 1fr; gap: 1rem; }
-            nav a { display: none; }
-            nav a:last-child, .theme-btn { display: flex; }
-            .hero-name { font-size: clamp(2.8rem, 12vw, 4rem); }
-        }
-
-        @media (max-width: 480px) {
-            .header-inner, .hero-inner, .section-header, .section-body, .footer-inner {
-                padding-left: 1.25rem;
-                padding-right: 1.25rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .fade-in { opacity: 1; transform: none; transition: none; }
-            .footer-dot { animation: none; }
-        }
-    </style>
+    <title>Ritesh Diwan — Document Archives</title>
+    <meta name="description" content="Archival log files and written systems articles by developer Ritesh Diwan.">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="light-chassis">
 
     <audio id="switchSound" src="click.mp3" preload="auto"></audio>
 
     <header>
         <div class="header-inner">
-            <a href="index.html" class="site-name">Ritesh Diwan</a>
+            <a href="index.html" class="site-logo">
+                <div class="brand">TEAC <span>RD-80</span></div>
+                <span class="brand-model">AUTOMATIC REVERSE // SOLID STATE</span>
+            </a>
             <nav role="navigation">
                 <a href="index.html#projects">Projects</a>
                 <a href="index.html#about">About</a>
                 <a href="blog.html">Blog</a>
                 <a href="index.html#contact">Contact</a>
-                <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">☼</button>
+                <button class="theme-btn" id="themeBtn" aria-label="Toggle Light Beige or Dark Charcoal chassis">CHASSIS: BEIGE</button>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="hero">
-            <div class="hero-inner">
-                <div class="fade-in">
-                    <p class="hero-label">Essays / Notebook — Writing</p>
-                    <h1 class="hero-name">
-                        <div class="highlight-box"></div>
-                        Written<br><em>Thought.</em>
-                    </h1>
-                    <p class="hero-tagline">
-                        A repository of notes and articles examining interface design, systems architecture,
-                        standard-compliant frontend engineering, and personal design principles.
-                    </p>
-                </div>
-                <div class="fade-in" style="transition-delay:0.15s;">
-                    <div class="hero-meta-row">
-                        <span class="meta-label">Total Posts</span>
-                        <span class="meta-value">2 Published</span>
-                    </div>
-                    <div class="hero-meta-row">
-                        <span class="meta-label">Focus</span>
-                        <span class="meta-value">Systems & Front-End</span>
-                    </div>
-                    <div class="hero-meta-row">
-                        <span class="meta-label">RSS Feed</span>
-                        <span class="meta-value">Inactive</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <section id="posts">
+        <!-- BLOG HERO READOUT -->
+        <section class="fade-in">
             <div class="section-header">
-                <span class="section-index">§ 01</span>
-                <h2 class="section-title-label">All Entries</h2>
+                <h1 class="section-title">PRINTED LOG DIRECTORIES</h1>
+                <span class="section-specs">INDEX PATH: /DEV/LOGS // FILES DETECTED: 02</span>
             </div>
             <div class="section-body">
-                <a href="posts/why-structure-outlasts-style.html" class="blog-row fade-in">
-                    <div class="blog-date">OCT 24, 2025</div>
-                    <div>
-                        <h3 class="blog-name">Why Data Structure Outlasts Interface Style</h3>
-                        <p class="blog-desc">
-                            A deep dive into why mapping schemas and relationships holds a digital product together long after the typography, gradients, and layouts feel dated.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="tag">Architecture</span>
-                            <span class="tag">Database</span>
-                            <span class="tag">Engineering</span>
-                        </div>
-                    </div>
-                    <div class="blog-link">Read →</div>
-                </a>
+                <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; max-width:650px;">
+                    A chronological repository of technical manual pages, specifications sheets, and essays 
+                    investigating programming parameters, clean architecture principles, and web standards layout design.
+                </p>
+            </div>
+        </section>
 
-                <a href="posts/vanilla-js-vs-framework-bloat.html" class="blog-row fade-in" style="transition-delay: 0.1s;">
-                    <div class="blog-date">NOV 12, 2025</div>
-                    <div>
-                        <h3 class="blog-name">Vanilla JavaScript and CSS vs. Framework Bloat</h3>
-                        <p class="blog-desc">
-                            Exploring the tactile, mechanical feeling of shipping standard-compliant web pages without relying on virtual DOM abstractions or large tailwind builds.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="tag">Web Standards</span>
-                            <span class="tag">Performance</span>
-                            <span class="tag">Vanilla JS</span>
+        <!-- PRINTED LOGS RECORDS -->
+        <section class="fade-in">
+            <div class="section-header">
+                <h2 class="section-title">RECORD VOLUMES</h2>
+                <span class="section-specs">TAPE REGISTER: D-04</span>
+            </div>
+            <div class="section-body">
+                <div class="blog-directory">
+                    <a href="posts/why-structure-outlasts-style.html" class="blog-record">
+                        <div class="blog-record-meta">
+                            <span>REEL: LOG-001</span>
+                            <span>DATE: OCT 24, 2025</span>
+                            <span>SIZE: 15.54 KB</span>
                         </div>
-                    </div>
-                    <div class="blog-link">Read →</div>
-                </a>
+                        <div>
+                            <h3 class="blog-record-title">Why Data Structure Outlasts Interface Style</h3>
+                            <p class="blog-record-desc">
+                                A deep dive into why mapping schemas and relationships holds a digital product together long after the typography, gradients, and layouts feel dated.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Architecture</span>
+                                <span class="project-tag">Database</span>
+                                <span class="project-tag">Engineering</span>
+                            </div>
+                        </div>
+                        <div class="action-btn" style="padding: 0.5rem 1rem; font-size: 0.75rem; border-bottom-width: 5px;">READ LOG →</div>
+                    </a>
+
+                    <a href="posts/vanilla-js-vs-framework-bloat.html" class="blog-record">
+                        <div class="blog-record-meta">
+                            <span>REEL: LOG-002</span>
+                            <span>DATE: NOV 12, 2025</span>
+                            <span>SIZE: 14.66 KB</span>
+                        </div>
+                        <div>
+                            <h3 class="blog-record-title">Vanilla JavaScript and CSS vs. Framework Bloat</h3>
+                            <p class="blog-record-desc">
+                                Exploring the tactile, mechanical feeling of shipping standard-compliant web pages without relying on virtual DOM abstractions or large tailwind builds.
+                            </p>
+                            <div class="project-tags">
+                                <span class="project-tag">Web Standards</span>
+                                <span class="project-tag">Performance</span>
+                                <span class="project-tag">Vanilla JS</span>
+                            </div>
+                        </div>
+                        <div class="action-btn" style="padding: 0.5rem 1rem; font-size: 0.75rem; border-bottom-width: 5px;">READ LOG →</div>
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-inner">
-            <span class="footer-left" id="footerClock">© 2025 Ritesh Diwan</span>
-            <span class="footer-status">
-                <span class="footer-dot"></span>
-                All systems operational
-            </span>
+            <span class="footer-left" id="footerClock">© 2026 RITESH DIWAN</span>
+            <div class="footer-dot-group">
+                <div class="footer-led"></div>
+                <span>AUTO-REVERSE TAPE DECK</span>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for animations
+        // Intersection Observer for scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }, { threshold: 0.08 });
+        }, { threshold: 0.05 });
 
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Dark Mode Logic
+        // Switch Sound and Chassis Theme Toggle
         const themeBtn = document.getElementById('themeBtn');
         const switchSound = document.getElementById('switchSound');
-        const savedTheme = localStorage.getItem('rd-theme');
         
-        const updateIcon = (isDark) => {
-            themeBtn.textContent = isDark ? '☾' : '☼';
-        };
-
-        if (savedTheme === 'dark') { 
-            document.body.classList.add('dark'); 
-            updateIcon(true);
+        function playClickSound() {
+            switchSound.currentTime = 0;
+            switchSound.play().catch(err => console.log("Audio play blocked."));
         }
 
-        themeBtn.addEventListener('click', () => {
-            switchSound.currentTime = 0;
-            switchSound.play().catch(e => console.log("Sound play blocked by browser."));
+        const applyTheme = (isDark) => {
+            if (isDark) {
+                document.body.classList.add('dark');
+                themeBtn.textContent = "CHASSIS: CHARCOAL";
+            } else {
+                document.body.classList.remove('dark');
+                themeBtn.textContent = "CHASSIS: BEIGE";
+            }
+        };
 
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            
-            updateIcon(isDark);
-            localStorage.setItem('rd-theme', isDark ? 'dark' : 'light');
+        const isDarkDefault = localStorage.getItem('rd-chassis-theme') === 'dark';
+        applyTheme(isDarkDefault);
+
+        themeBtn.addEventListener('click', () => {
+            playClickSound();
+            const currentDark = document.body.classList.contains('dark');
+            applyTheme(!currentDark);
+            localStorage.setItem('rd-chassis-theme', !currentDark ? 'dark' : 'light');
         });
 
         // Dynamic Footer Clock (IST)
@@ -544,7 +157,7 @@
                 hour12: false 
             };
             const timeString = now.toLocaleTimeString('en-GB', options);
-            footerClock.textContent = `© 2025 Ritesh Diwan — IST ${timeString}`;
+            footerClock.textContent = `© 2026 RITESH DIWAN — TELEMETRY IST: ${timeString}`;
         }
         setInterval(updateTime, 1000);
         updateTime();
