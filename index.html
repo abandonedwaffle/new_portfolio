@@ -3,61 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritesh Diwan — Portfolio Dossier</title>
-    <meta name="description" content="Personal developer portfolio of Ritesh Diwan. Minimalist single-page website.">
+    <title>Ritesh Diwan — Portfolio</title>
+    <meta name="description" content="Personal developer portfolio of Ritesh Diwan. Self-taught developer from India building through The Odin Project.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Mechanical Click Sound -->
-    <audio id="switchSound" src="click.mp3" preload="auto"></audio>
 
     <div class="app-container">
         
         <!-- SIDEBAR TREE EXPLORER -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <div class="brand-title">ritesh-diwan/</div>
-                <div class="brand-subtitle">developer portfolio</div>
+                <h1 class="brand-title">Ritesh Diwan</h1>
+                <p class="brand-tagline">
+                    Self-taught developer from India, working through The Odin Project. Writes clean code, thinks about database relations, tries not to outsource his thinking to AI.
+                </p>
             </div>
             
-            <nav class="sidebar-nav">
+            <nav class="sidebar-nav" aria-label="Explorer Navigation">
                 <div class="tree-explorer">
+                    <div class="tree-root">ritesh-diwan/</div>
                     
-                    <!-- About Me node -->
-                    <div class="tree-node nav-item active" data-buffer="about">
-                        <span class="node-icon icon-file"></span>
-                        <a onclick="switchBuffer('about')">about_me.md</a>
-                    </div>
-                    
-                    <!-- Projects node -->
-                    <div class="tree-node nav-item" data-buffer="projects">
+                    <!-- Projects node (Active by default) -->
+                    <div class="tree-node nav-item active" data-buffer="projects" id="nav-projects">
                         <span class="node-icon icon-file"></span>
                         <a onclick="switchBuffer('projects')">projects.json</a>
+                        <span class="node-wit">/* actually functions */</span>
                     </div>
                     
-                    <!-- Blogs directory node -->
-                    <div class="tree-node nav-item" data-buffer="blogs">
-                        <span class="node-icon icon-folder"></span>
-                        <a onclick="switchBuffer('blogs')">blogs/</a>
-                    </div>
-                    
-                    <!-- Stack node -->
-                    <div class="tree-node nav-item last-node" data-buffer="stack">
+                    <!-- About Me node -->
+                    <div class="tree-node nav-item" data-buffer="about" id="nav-about">
                         <span class="node-icon icon-file"></span>
-                        <a onclick="switchBuffer('stack')">tech_stack.yaml</a>
+                        <a onclick="switchBuffer('about')">about.md</a>
+                        <span class="node-wit">/* mostly honest */</span>
+                    </div>
+                    
+                    <!-- Contact node -->
+                    <div class="tree-node nav-item last-node" data-buffer="contact" id="nav-contact">
+                        <span class="node-icon icon-file"></span>
+                        <a onclick="switchBuffer('contact')">contact.txt</a>
+                        <span class="node-wit">/* human interaction */</span>
                     </div>
                     
                 </div>
             </nav>
 
             <div class="sidebar-footer">
-                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
-                    theme: light
-                </button>
-                <div class="sidebar-info">
-                    Single-page dossier.<br>
-                    Redesigned 2026.
+                <div class="footer-meta">
+                    <span id="footer-clock">IST 12:00:00</span>
+                    <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">theme: light</button>
                 </div>
             </div>
         </aside>
@@ -66,157 +65,137 @@
         <main class="main-workspace">
             <div class="content-container">
                 
-                <!-- ABOUT ME BUFFER -->
-                <div id="buffer-about" class="buffer-content" style="display: block;">
-                    <h1>About Me</h1>
-                    <p class="post-meta">System dossier // active</p>
-                    
-                    <p>I'm a self-taught developer from India, building real products while working through <strong>The Odin Project</strong> curriculum. I don't wait until I'm ready — I ship things, break them, audit them, and make them better.</p>
-                    
-                    <p>My approach is systems-first. Before writing a line of code, I think about data models, user flows, and what the core software interface is actually trying to solve. The visual presentation always emerges from function, not decoration.</p>
-                    
-                    <p>I'm drawn to projects with a strong editorial identity — software that has a clear point of view and commits to it completely.</p>
-                    
-                    <h2>Core Directives &amp; Principles</h2>
-                    
-                    <div class="meta-grid">
-                        <div class="meta-row">
-                            <span class="meta-label">01. Ship</span>
-                            <span class="meta-value"><strong>SHIP REAL THINGS</strong> — Side projects that go live teach more than a thousand tutorials.</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">02. Models</span>
-                            <span class="meta-value"><strong>DATA ARCHITECTURE FIRST</strong> — Design the data model before the interface. Structure outlasts style.</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">03. Audits</span>
-                            <span class="meta-value"><strong>SELF-AUDIT CODE</strong> — Trust but verify. Always run checks against your own assumptions.</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">04. Design</span>
-                            <span class="meta-value"><strong>FUNCTIONAL DESIGN</strong> — Aesthetic is not decoration. It is the product's interface argument.</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">05. Intelligence</span>
-                            <span class="meta-value"><strong>AI AS HANDS, NOT BRAIN</strong> — Use tools to build faster, but the logic design must remain human.</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">06. Shipped</span>
-                            <span class="meta-value"><strong>FINISH THE MISSION</strong> — The gap between 90% and shipped is where quality is decided.</span>
-                        </div>
-                    </div>
-                    
-                    <h2>Transmitter Outbound Wires</h2>
-                    <p>Feel free to reach out through any of the channels below:</p>
-                    <ul>
-                        <li>Email Channel: <a href="mailto:diwan.devs@yahoo.com">diwan.devs@yahoo.com</a></li>
-                        <li>Github Link: <a href="https://github.com/abandonedwaffle" target="_blank">abandonedwaffle</a></li>
-                        <li>LinkedIn Index: <a href="https://www.linkedin.com/in/ritesh-diwan-327339232/" target="_blank">ritesh-diwan</a></li>
-                    </ul>
-                </div>
-                
                 <!-- PROJECTS BUFFER -->
-                <div id="buffer-projects" class="buffer-content" style="display: none;">
-                    <h1>Projects</h1>
-                    <p class="post-meta">Diagnostic registry // active</p>
+                <div id="buffer-projects" class="buffer-content" style="display: block;">
+                    <h2>Projects</h2>
                     
-                    <p>Below is a curated record of applications designed and shipped independently.</p>
-                    
-                    <div class="project-card">
-                        <h3>SimplyCars.in</h3>
-                        <div class="meta-grid">
-                            <div class="meta-row">
-                                <span class="meta-label">Status</span>
-                                <span class="meta-value">Active // Live</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">Capacity</span>
-                                <span class="meta-value">1.44 MB</span>
-                            </div>
-                            <div class="meta-row">
-                                <span class="meta-label">Deploy Code</span>
-                                <span class="meta-value"><a href="https://simplycars.in" target="_blank">simplycars.in →</a></span>
-                            </div>
-                        </div>
-                        <p>A technical car database for the Indian market. Bureau-grade spec sheets for every trim, variant, and powertrain — built around a relational data model linking manufacturers, brands, engines, and variants. Single-admin Firebase backend with a fully public-facing dossier system.</p>
-                        <ul class="tag-list">
-                            <li class="tag">Firebase</li>
-                            <li class="tag">Firestore</li>
-                            <li class="tag">Vanilla JS</li>
-                            <li class="tag">HTML5 / CSS3</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <!-- BLOGS DIRECTORY BUFFER -->
-                <div id="buffer-blogs" class="buffer-content" style="display: none;">
-                    <h1>Blogs</h1>
-                    <p class="post-meta">System archives // logs</p>
-                    
-                    <p>Below is a chronological directory of engineering blogs and publications. Click on any title to open the article page.</p>
-                    
-                    <div class="blogs-list">
-                        <div class="blog-item">
-                            <div class="blog-item-title">
-                                <a href="posts/why-structure-outlasts-style.html">Why Data Structure Outlasts Interface Style →</a>
-                            </div>
-                            <p class="blog-item-desc">Oct 24, 2025 • A deep dive into mapping database relations before writing visual rules.</p>
-                        </div>
+                    <div class="projects-list">
                         
-                        <div class="blog-item">
-                            <div class="blog-item-title">
-                                <a href="posts/vanilla-js-vs-framework-bloat.html">Vanilla JavaScript and CSS vs. Framework Bloat →</a>
+                        <article class="project-card" id="project-simplycars">
+                            <div class="project-card-header">
+                                <h3 class="project-name">SimplyCars.in</h3>
+                                <a href="https://simplycars.in" target="_blank" rel="noopener" class="project-link">
+                                    simplycars.in <span class="arrow">→</span>
+                                </a>
                             </div>
-                            <p class="blog-item-desc">Nov 12, 2025 • Exploring the tactile speed of standard-compliant web architectures.</p>
+                            <p class="project-desc">
+                                An online database mapping every car variant, engine spec, and trim level in the Indian auto market.
+                            </p>
+                            <div class="project-challenge">
+                                <span class="challenge-label">The hard part:</span>
+                                <p class="challenge-text">
+                                    Representing hierarchical car data (manufacturer → model → engine → trim) in Firestore without blowing through free-tier read limits. I solved this by denormalizing trim-engine mappings and building a custom caching layer in vanilla JS so that searching for a car doesn't trigger dozens of database queries.
+                                </p>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Firestore</span>
+                                <span class="tech-tag">Vanilla JS</span>
+                                <span class="tech-tag">CSS Grid</span>
+                            </div>
+                        </article>
+
+                        <article class="project-card" id="project-battleship">
+                            <div class="project-card-header">
+                                <h3 class="project-name">Battleship</h3>
+                                <a href="https://github.com/abandonedwaffle/odin-battleship" target="_blank" rel="noopener" class="project-link">
+                                    View Code <span class="arrow">→</span>
+                                </a>
+                            </div>
+                            <p class="project-desc">
+                                A browser-based Battleship game where you play against a computer opponent that uses probability to target and hunt down player ships.
+                            </p>
+                            <div class="project-challenge">
+                                <span class="challenge-label">The hard part:</span>
+                                <p class="challenge-text">
+                                    Managing state synchronization and board lockouts during rapid user clicks. I spent days debugging a race condition where double-clicking a grid cell during transition allowed the player to fire twice in one turn, which I resolved by designing a strict state machine to lock grid interactions during the computer's calculations.
+                                </p>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Vanilla JS</span>
+                                <span class="tech-tag">Webpack</span>
+                                <span class="tech-tag">Jest</span>
+                                <span class="tech-tag">CSS Flexbox</span>
+                            </div>
+                        </article>
+
+                        <article class="project-card" id="project-waldo">
+                            <div class="project-card-header">
+                                <h3 class="project-name">Where's Waldo: Street Food Edition</h3>
+                                <a href="https://github.com/abandonedwaffle/odin-wheres-waldo" target="_blank" rel="noopener" class="project-link">
+                                    View Code <span class="arrow">→</span>
+                                </a>
+                            </div>
+                            <p class="project-desc">
+                                A photo-tagging game where players locate famous Indian street food items in a high-resolution, crowded bazaar illustration.
+                            </p>
+                            <div class="project-challenge">
+                                <span class="challenge-label">The hard part:</span>
+                                <p class="challenge-text">
+                                    Ensuring coordinate verification worked reliably on responsive layouts. Because the main board image scales dynamically across viewport widths, static pixel coordinate targets broke. I solved this by capturing raw clicks, translating them to percentage offsets relative to the image bounding box, and verifying the ranges against a Node/Express backend.
+                                </p>
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">Express</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Vanilla JS</span>
+                            </div>
+                        </article>
+                        
+                    </div>
+                </div>
+                
+                <!-- ABOUT BUFFER -->
+                <div id="buffer-about" class="buffer-content" style="display: none;">
+                    <h2>About</h2>
+                    
+                    <div class="about-text">
+                        <p>
+                            I got into programming because I wanted to understand how the web applications I used every day actually worked. For a long time, I was stuck in tutorial hell—blindly copy-pasting code from video tutorials and pretending I understood it.
+                        </p>
+                        <p>
+                            That changed when I found The Odin Project. I deleted my half-finished clone apps and started building layouts and logic from scratch, writing my own bugs and forcing myself to trace their origins.
+                        </p>
+                        
+                        <div class="about-concrete-card">
+                            <span class="detail-label">A concrete detail:</span>
+                            <p class="detail-text">
+                                While testing SimplyCars.in, I accidentally wrote an infinite loop inside a vanilla state listener. It triggered 40,000+ Firestore reads in under ten minutes and completely exhausted the free tier for the month. It was a stressful, expensive-feeling way to learn the value of rate limiting, debouncing, and validating state loops—but my data-fetching code has been solid ever since.
+                            </p>
                         </div>
                     </div>
                 </div>
                 
-                <!-- TECH STACK BUFFER -->
-                <div id="buffer-stack" class="buffer-content" style="display: none;">
-                    <h1>Tech Stack</h1>
-                    <p class="post-meta">System diagnostics // active</p>
+                <!-- CONTACT BUFFER -->
+                <div id="buffer-contact" class="buffer-content" style="display: none;">
+                    <h2>Contact</h2>
                     
-                    <p>Diagnostic checklist of languages, storage environments, and operational tooling.</p>
-                    
-                    <h2>Languages &amp; Core Standards</h2>
-                    <div class="meta-grid">
-                        <div class="meta-row">
-                            <span class="meta-label">HTML5</span>
-                            <span class="meta-value">90% // Semantic Layouts, Accessibility, Core Structure</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">CSS3</span>
-                            <span class="meta-value">85% // Grid Systems, Custom Properties, Flexbox, Responsive Designs</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">JavaScript</span>
-                            <span class="meta-value">80% // ES6+, DOM Manipulations, Fetch/Async operations</span>
-                        </div>
-                    </div>
-                    
-                    <h2>Backend &amp; Database Environments</h2>
-                    <div class="meta-grid">
-                        <div class="meta-row">
-                            <span class="meta-label">Firebase</span>
-                            <span class="meta-value">75% // Firestore Database, Security Rules, Authentication</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Node.js</span>
-                            <span class="meta-value">Learning // REST API design, package ecosystems</span>
-                        </div>
-                    </div>
-                    
-                    <h2>Systems &amp; Workflows</h2>
-                    <div class="meta-grid">
-                        <div class="meta-row">
-                            <span class="meta-label">Git</span>
-                            <span class="meta-value">85% // Command Line Versioning, Branch mappings</span>
-                        </div>
-                        <div class="meta-row">
-                            <span class="meta-label">Google Stitch</span>
-                            <span class="meta-value">60% // Integration operations</span>
-                        </div>
+                    <div class="contact-text">
+                        <p>
+                            I am based in India. Open to conversations about software, web standards, or automotive specs.
+                        </p>
+                        
+                        <ul class="contact-links">
+                            <li>
+                                <a href="mailto:diwan.devs@yahoo.com" class="contact-link-row">
+                                    <span class="contact-label">Email:</span>
+                                    <span class="contact-val">diwan.devs@yahoo.com</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/abandonedwaffle" target="_blank" rel="noopener" class="contact-link-row">
+                                    <span class="contact-label">GitHub:</span>
+                                    <span class="contact-val">github.com/abandonedwaffle</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/ritesh-diwan-327339232/" target="_blank" rel="noopener" class="contact-link-row">
+                                    <span class="contact-label">LinkedIn:</span>
+                                    <span class="contact-val">linkedin.com/in/ritesh-diwan-327339232</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
@@ -225,19 +204,8 @@
     </div>
 
     <script>
-        const switchSound = document.getElementById('switchSound');
-
-        function playClickSound() {
-            if (switchSound) {
-                switchSound.currentTime = 0;
-                switchSound.play().catch(err => console.log("Audio play blocked."));
-            }
-        }
-
         // Swaps dynamic buffers
         function switchBuffer(bufferId) {
-            playClickSound();
-
             // Hide currently active buffers
             document.querySelectorAll('.buffer-content').forEach(el => {
                 el.style.display = 'none';
@@ -249,7 +217,7 @@
                 targetBuffer.style.display = 'block';
             }
 
-            // Update active states in the directory tree list
+            // Update active states in the navigation list
             document.querySelectorAll('.tree-node.nav-item').forEach(item => {
                 const itemBuf = item.getAttribute('data-buffer');
                 if (itemBuf === bufferId) {
@@ -259,8 +227,11 @@
                 }
             });
 
-            // Scroll right container back to top
+            // Scroll workspace back to top
             document.querySelector('.main-workspace').scrollTop = 0;
+            
+            // Save state
+            localStorage.setItem('portfolio-buffer', bufferId);
         }
 
         // Theme Toggle Manager
@@ -274,20 +245,43 @@
                 document.body.classList.remove('theme-dark');
                 themeBtn.textContent = 'theme: light';
             }
-            localStorage.setItem('dossier-theme', themeName);
+            localStorage.setItem('portfolio-theme', themeName);
         }
 
         themeBtn.addEventListener('click', () => {
-            playClickSound();
             const isDark = document.body.classList.contains('theme-dark');
             setTheme(isDark ? 'light' : 'dark');
         });
 
         // Initialize state
         window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('dossier-theme') || 'light';
+            // Restore theme
+            const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
             setTheme(savedTheme);
+            
+            // Restore active buffer (default to projects)
+            const savedBuffer = localStorage.getItem('portfolio-buffer') || 'projects';
+            switchBuffer(savedBuffer);
         });
+
+        // Dynamic Footer Clock (IST)
+        function updateTime() {
+            const clockEl = document.getElementById('footer-clock');
+            if (clockEl) {
+                const now = new Date();
+                const options = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    timeZone: 'Asia/Kolkata',
+                    hour12: false
+                };
+                const timeString = now.toLocaleTimeString('en-GB', options);
+                clockEl.textContent = `IST ${timeString}`;
+            }
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
     </script>
 </body>
 </html>
