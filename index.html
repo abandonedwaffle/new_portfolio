@@ -14,6 +14,9 @@
 </head>
 <body>
 
+    <!-- Mechanical Click Sound -->
+    <audio id="switchSound" src="click.mp3" preload="auto"></audio>
+
     <div class="app-container">
         
         <!-- SIDEBAR TREE EXPLORER -->
@@ -32,21 +35,21 @@
                     <!-- Projects node (Active by default) -->
                     <div class="tree-node nav-item active" data-buffer="projects" id="nav-projects">
                         <span class="node-icon icon-file"></span>
-                        <a onclick="switchBuffer('projects')">projects.json</a>
+                        <a onclick="switchBuffer('projects', true)">projects.json</a>
                         <span class="node-wit">/* actually functions */</span>
                     </div>
                     
                     <!-- About Me node -->
                     <div class="tree-node nav-item" data-buffer="about" id="nav-about">
                         <span class="node-icon icon-file"></span>
-                        <a onclick="switchBuffer('about')">about.md</a>
+                        <a onclick="switchBuffer('about', true)">about.md</a>
                         <span class="node-wit">/* mostly honest */</span>
                     </div>
                     
                     <!-- Contact node -->
                     <div class="tree-node nav-item last-node" data-buffer="contact" id="nav-contact">
                         <span class="node-icon icon-file"></span>
-                        <a onclick="switchBuffer('contact')">contact.txt</a>
+                        <a onclick="switchBuffer('contact', true)">contact.txt</a>
                         <span class="node-wit">/* human interaction */</span>
                     </div>
                     
@@ -204,8 +207,21 @@
     </div>
 
     <script>
+        const switchSound = document.getElementById('switchSound');
+
+        function playClickSound() {
+            if (switchSound) {
+                switchSound.currentTime = 0;
+                switchSound.play().catch(err => console.log("Audio play blocked."));
+            }
+        }
+
         // Swaps dynamic buffers
-        function switchBuffer(bufferId) {
+        function switchBuffer(bufferId, playSound = false) {
+            if (playSound) {
+                playClickSound();
+            }
+
             // Hide currently active buffers
             document.querySelectorAll('.buffer-content').forEach(el => {
                 el.style.display = 'none';
@@ -249,6 +265,7 @@
         }
 
         themeBtn.addEventListener('click', () => {
+            playClickSound();
             const isDark = document.body.classList.contains('theme-dark');
             setTheme(isDark ? 'light' : 'dark');
         });

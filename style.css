@@ -110,6 +110,8 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1.5rem 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color-dim) transparent;
 }
 
 /* Custom CSS Tree Explorer */
@@ -260,6 +262,8 @@ body.theme-dark .icon-file::after {
     overflow-y: auto;
     background-color: var(--bg-color);
     transition: background-color 0.25s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color-dim) transparent;
 }
 
 .content-container {
