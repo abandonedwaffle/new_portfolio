@@ -6,61 +6,33 @@
     <title>Why Data Structure Outlasts Interface Style — Ritesh Diwan</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body class="light-chassis">
+<body class="article-body">
 
+    <!-- Mechanical Click Sound -->
     <audio id="switchSound" src="../click.mp3" preload="auto"></audio>
 
-    <header>
-        <div class="header-inner">
-            <a href="../index.html" class="site-logo">
-                <div class="brand">TEAC <span>RD-80</span></div>
-                <span class="brand-model">AUTOMATIC REVERSE // SOLID STATE</span>
-            </a>
-            <nav role="navigation">
-                <a href="../index.html#projects">Projects</a>
-                <a href="../index.html#about">About</a>
-                <a href="../blog.html">Blog</a>
-                <a href="../index.html#contact">Contact</a>
-                <button class="theme-btn" id="themeBtn" aria-label="Toggle Light Beige or Dark Charcoal chassis">CHASSIS: BEIGE</button>
-            </nav>
-        </div>
-    </header>
+    <!-- Theme Toggle -->
+    <button class="article-theme-btn" id="themeToggleBtn" aria-label="Toggle Theme">theme: light</button>
 
-    <main>
-        <article class="post-chassis fade-in">
-            <a href="../blog.html" class="back-action">← RETURN TO DIRECTORY</a>
-            
-            <header class="post-head">
-                <div class="post-details">
-                    <span>Oct 24, 2025</span>
-                    <span>•</span>
-                    <span>4 Min Read</span>
-                </div>
-                <h1 class="post-headline">Why Data Structure Outlasts Interface Style</h1>
-            </header>
-
-            <div class="post-body">
-                <p>
-                    In product design, visual style is fleeting. Color harmonies shift, container corners oscillate between rounded and sharp, and typography trends migrate from heavy neo-grotesques to editorial serifs. If the core argument of a web application is built strictly around its stylistic aesthetics, it has a built-in expiration date.
-                </p>
-
-                <p>
-                    However, the data model that sits beneath the screen is remarkably resilient. When you design the relational mappings, entity attributes, and state flows of a system before writing a single CSS rule, you establish a blueprint that can survive a decade of aesthetic redesigns.
-                </p>
-
-                <blockquote>
-                    "Design the data model before the interface. Structure outlasts style."
-                </blockquote>
-
-                <h2>The Anatomy of Spec Sheets</h2>
-                <p>
-                    Take my work building <a href="https://simplycars.in" target="_blank" style="color: var(--accent-orange); text-decoration: none; font-weight: 700;">SimplyCars.in</a> as a practical example. The layout displays manufacturer detail cards, variants, specs, and engines. The interface itself could be a CLI, an Excel spreadsheet, or a highly polished, responsive grid. 
-                </p>
-                <p>
-                    What makes the product functional is the underlying relational schema in Firestore:
-                </p>
-
-                <pre><code>// Conceptual relation mapping
+    <div class="article-container">
+        
+        <p class="post-meta"><a href="../index.html">&lt; Back to Portfolio</a></p>
+        
+        <h1>Why Data Structure Outlasts Interface Style</h1>
+        <p class="post-meta">Oct 24, 2025 • 4 Min Read • architecture</p>
+        
+        <p>In product design, visual style is fleeting. Color harmonies shift, container corners oscillate between rounded and sharp, and typography trends migrate from heavy neo-grotesques to editorial serifs. If the core argument of a web application is built strictly around its stylistic aesthetics, it has a built-in expiration date.</p>
+        
+        <p>However, the data model that sits beneath the screen is remarkably resilient. When you design the relational mappings, entity attributes, and state flows of a system before writing a single CSS rule, you establish a blueprint that can survive a decade of aesthetic redesigns.</p>
+        
+        <blockquote>"Design the data model before the interface. Structure outlasts style."</blockquote>
+        
+        <h2>The Anatomy of Spec Sheets</h2>
+        <p>Take my work building <a href="https://simplycars.in" target="_blank">SimplyCars.in</a> as a practical example. The layout displays manufacturer detail cards, variants, specs, and engines. The interface itself could be a CLI, an Excel spreadsheet, or a highly polished, responsive grid.</p>
+        
+        <p>What makes the product functional is the underlying relational schema in Firestore:</p>
+        
+        <pre><code>// Conceptual relation mapping
 const VariantSchema = {
     id: "uuid-1234",
     name: "Aventador SVJ",
@@ -71,93 +43,55 @@ const VariantSchema = {
         driveTrain: "AWD"
     }
 };</code></pre>
-
-                <p>
-                    Because this model mimics the physical realities of the automotive industry (where variants belong to models, models belong to makes, and engines are shared assets), the data remains clean. If I decide tomorrow to change the orange accent to blue or introduce cards instead of list rows, the data remains unaffected.
-                </p>
-
-                <h2>How to Focus on Structure First</h2>
-                
-                <ol>
-                    <li><strong>Determine the Entities:</strong> Draw out your domain model. What are the nouns in your application? (e.g., User, Article, Tag, Project).</li>
-                    <li><strong>Define the Relations:</strong> Establish cardinality. Does an Article have many Tags? Does a Variant reference a single Engine?</li>
-                    <li><strong>Write Schema Checks:</strong> Validate your inputs at the database boundary before allowing them to propagate to client-side views.</li>
-                </ol>
-
-                <p>
-                    Aesthetic is not decoration — it is a product's argument for its utility. But without a clean data structure to back up that argument, the interface is simply empty window dressing.
-                </p>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <span class="footer-left" id="footerClock">© 2026 RITESH DIWAN</span>
-            <div class="footer-dot-group">
-                <div class="footer-led"></div>
-                <span>AUTO-REVERSE TAPE DECK</span>
-            </div>
-        </div>
-    </footer>
+        
+        <p>Because this model mimics the physical realities of the automotive industry (where variants belong to models, models belong to makes, and engines are shared assets), the data remains clean. If I decide tomorrow to change the orange accent to blue or introduce cards instead of list rows, the data remains unaffected.</p>
+        
+        <h2>How to Focus on Structure First</h2>
+        <ol>
+            <li><strong>Determine the Entities:</strong> Draw out your domain model. What are the nouns in your application? (e.g., User, Article, Tag, Project).</li>
+            <li><strong>Define the Relations:</strong> Establish cardinality. Does an Article have many Tags? Does a Variant reference a single Engine?</li>
+            <li><strong>Write Schema Checks:</strong> Validate your inputs at the database boundary before allowing them to propagate to client-side views.</li>
+        </ol>
+        
+        <p>Aesthetic is not decoration — it is a product's argument for its utility. But without a clean data structure to back up that argument, the interface is simply empty window dressing.</p>
+        
+        <p class="post-meta" style="margin-top: 4rem; border-top: 1px solid var(--border-color-dim); padding-top: 1.5rem;">
+            <a href="../index.html">&lt; Back to Portfolio</a>
+        </p>
+    </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.05 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Switch Sound and Chassis Theme Toggle
-        const themeBtn = document.getElementById('themeBtn');
+        const themeBtn = document.getElementById('themeToggleBtn');
         const switchSound = document.getElementById('switchSound');
-        
+
         function playClickSound() {
-            switchSound.currentTime = 0;
-            switchSound.play().catch(err => console.log("Audio play blocked."));
+            if (switchSound) {
+                switchSound.currentTime = 0;
+                switchSound.play().catch(err => console.log("Audio play blocked."));
+            }
         }
 
-        const applyTheme = (isDark) => {
-            if (isDark) {
-                document.body.classList.add('dark');
-                themeBtn.textContent = "CHASSIS: CHARCOAL";
+        function setTheme(themeName) {
+            if (themeName === 'dark') {
+                document.body.classList.add('theme-dark');
+                themeBtn.textContent = 'theme: dark';
             } else {
-                document.body.classList.remove('dark');
-                themeBtn.textContent = "CHASSIS: BEIGE";
+                document.body.classList.remove('theme-dark');
+                themeBtn.textContent = 'theme: light';
             }
-        };
-
-        const isDarkDefault = localStorage.getItem('rd-chassis-theme') === 'dark';
-        applyTheme(isDarkDefault);
+            localStorage.setItem('dossier-theme', themeName);
+        }
 
         themeBtn.addEventListener('click', () => {
             playClickSound();
-            const currentDark = document.body.classList.contains('dark');
-            applyTheme(!currentDark);
-            localStorage.setItem('rd-chassis-theme', !currentDark ? 'dark' : 'light');
+            const isDark = document.body.classList.contains('theme-dark');
+            setTheme(isDark ? 'light' : 'dark');
         });
 
-        // Dynamic Footer Clock (IST)
-        function updateTime() {
-            const footerClock = document.getElementById('footerClock');
-            const now = new Date();
-            const options = { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                timeZone: 'Asia/Kolkata',
-                hour12: false 
-            };
-            const timeString = now.toLocaleTimeString('en-GB', options);
-            footerClock.textContent = `© 2026 RITESH DIWAN — TELEMETRY IST: ${timeString}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dossier-theme') || 'light';
+            setTheme(savedTheme);
+        });
     </script>
 </body>
 </html>

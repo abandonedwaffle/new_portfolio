@@ -3,63 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vanilla JS & CSS vs. Framework Bloat — Ritesh Diwan</title>
+    <title>Vanilla JavaScript and CSS vs. Framework Bloat — Ritesh Diwan</title>
     <link rel="stylesheet" href="../style.css">
 </head>
-<body class="light-chassis">
+<body class="article-body">
 
+    <!-- Mechanical Click Sound -->
     <audio id="switchSound" src="../click.mp3" preload="auto"></audio>
 
-    <header>
-        <div class="header-inner">
-            <a href="../index.html" class="site-logo">
-                <div class="brand">TEAC <span>RD-80</span></div>
-                <span class="brand-model">AUTOMATIC REVERSE // SOLID STATE</span>
-            </a>
-            <nav role="navigation">
-                <a href="../index.html#projects">Projects</a>
-                <a href="../index.html#about">About</a>
-                <a href="../blog.html">Blog</a>
-                <a href="../index.html#contact">Contact</a>
-                <button class="theme-btn" id="themeBtn" aria-label="Toggle Light Beige or Dark Charcoal chassis">CHASSIS: BEIGE</button>
-            </nav>
-        </div>
-    </header>
+    <!-- Theme Toggle -->
+    <button class="article-theme-btn" id="themeToggleBtn" aria-label="Toggle Theme">theme: light</button>
 
-    <main>
-        <article class="post-chassis fade-in">
-            <a href="../blog.html" class="back-action">← RETURN TO DIRECTORY</a>
-            
-            <header class="post-head">
-                <div class="post-details">
-                    <span>Nov 12, 2025</span>
-                    <span>•</span>
-                    <span>3 Min Read</span>
-                </div>
-                <h1 class="post-headline">Vanilla JavaScript and CSS vs. Framework Bloat</h1>
-            </header>
-
-            <div class="post-body">
-                <p>
-                    There is an undeniable tactile, mechanical pleasure in writing standard-compliant web pages. 
-                    No package managers pulling in thousands of nested node modules, no virtual DOM reconciliation passes 
-                    chewing up mobile CPUs, and no compiled utility class styles that require complex build pipelines.
-                </p>
-
-                <p>
-                    When you code using vanilla HTML, CSS variables, and native browser APIs, the distance between your 
-                    thoughts and the rendered pixel is close to zero. The browser is not a compilation target; it is the 
-                    native canvas.
-                </p>
-
-                <h2>The Performance Argument</h2>
-                <p>
-                    Most web portfolios built with modern frameworks load megabytes of JavaScript just to display static lists of links. 
-                    This creates a noticeable "stutter" during page loads on sub-optimal networks. By contrast, a vanilla HTML page 
-                    loads instantly, parses synchronously, and responds to user interactions immediately.
-                </p>
-
-                <pre><code>// Pure browser interaction
+    <div class="article-container">
+        
+        <p class="post-meta"><a href="../index.html">&lt; Back to Portfolio</a></p>
+        
+        <h1>Vanilla JavaScript and CSS vs. Framework Bloat</h1>
+        <p class="post-meta">Nov 12, 2025 • 3 Min Read • web standards</p>
+        
+        <p>There is an undeniable tactile, mechanical pleasure in writing standard-compliant web pages. No package managers pulling in thousands of nested node modules, no virtual DOM reconciliation passes chewing up mobile CPUs, and no compiled utility class styles that require complex build pipelines.</p>
+        
+        <p>When you code using vanilla HTML, CSS variables, and native browser APIs, the distance between your thoughts and the rendered pixel is close to zero. The browser is not a compilation target; it is the native canvas.</p>
+        
+        <h2>The Performance Argument</h2>
+        <p>Most web portfolios built with modern frameworks load megabytes of JavaScript just to display static lists of links. This creates a noticeable "stutter" during page loads on sub-optimal networks. By contrast, a vanilla HTML page loads instantly, parses synchronously, and responds to user interactions immediately.</p>
+        
+        <pre><code>// Pure browser interaction
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -67,89 +36,49 @@ const observer = new IntersectionObserver((entries) => {
         }
     });
 }, { threshold: 0.08 });</code></pre>
-
-                <p>
-                    The CSS and JavaScript used across this entire portfolio is under 15 Kilobytes, including keyframe animations, 
-                    chassis mode switching, local storage caching, and responsive media rules.
-                </p>
-
-                <h2>Mechanical Design Feel</h2>
-                <p>
-                    Designing with Vanilla CSS allows you to harness custom properties to build a flexible system. By tweaking 
-                    values at the `:root`, theme switching occurs fluidly using pure browser paint routines. The result is 
-                    a lightweight site that works everywhere, forever.
-                </p>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <span class="footer-left" id="footerClock">© 2026 RITESH DIWAN</span>
-            <div class="footer-dot-group">
-                <div class="footer-led"></div>
-                <span>AUTO-REVERSE TAPE DECK</span>
-            </div>
-        </div>
-    </footer>
+        
+        <p>The CSS and JavaScript used across this entire portfolio is under 15 Kilobytes, including keyframe animations, theme switching, local storage caching, and responsive media rules.</p>
+        
+        <h2>Mechanical Design Feel</h2>
+        <p>Designing with Vanilla CSS allows you to harness custom properties to build a flexible system. By tweaking values at the <code>:root</code>, theme switching occurs fluidly using pure browser paint routines. The result is a lightweight site that works everywhere, forever.</p>
+        
+        <p class="post-meta" style="margin-top: 4rem; border-top: 1px solid var(--border-color-dim); padding-top: 1.5rem;">
+            <a href="../index.html">&lt; Back to Portfolio</a>
+        </p>
+    </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.05 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Switch Sound and Chassis Theme Toggle
-        const themeBtn = document.getElementById('themeBtn');
+        const themeBtn = document.getElementById('themeToggleBtn');
         const switchSound = document.getElementById('switchSound');
-        
+
         function playClickSound() {
-            switchSound.currentTime = 0;
-            switchSound.play().catch(err => console.log("Audio play blocked."));
+            if (switchSound) {
+                switchSound.currentTime = 0;
+                switchSound.play().catch(err => console.log("Audio play blocked."));
+            }
         }
 
-        const applyTheme = (isDark) => {
-            if (isDark) {
-                document.body.classList.add('dark');
-                themeBtn.textContent = "CHASSIS: CHARCOAL";
+        function setTheme(themeName) {
+            if (themeName === 'dark') {
+                document.body.classList.add('theme-dark');
+                themeBtn.textContent = 'theme: dark';
             } else {
-                document.body.classList.remove('dark');
-                themeBtn.textContent = "CHASSIS: BEIGE";
+                document.body.classList.remove('theme-dark');
+                themeBtn.textContent = 'theme: light';
             }
-        };
-
-        const isDarkDefault = localStorage.getItem('rd-chassis-theme') === 'dark';
-        applyTheme(isDarkDefault);
+            localStorage.setItem('dossier-theme', themeName);
+        }
 
         themeBtn.addEventListener('click', () => {
             playClickSound();
-            const currentDark = document.body.classList.contains('dark');
-            applyTheme(!currentDark);
-            localStorage.setItem('rd-chassis-theme', !currentDark ? 'dark' : 'light');
+            const isDark = document.body.classList.contains('theme-dark');
+            setTheme(isDark ? 'light' : 'dark');
         });
 
-        // Dynamic Footer Clock (IST)
-        function updateTime() {
-            const footerClock = document.getElementById('footerClock');
-            const now = new Date();
-            const options = { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                timeZone: 'Asia/Kolkata',
-                hour12: false 
-            };
-            const timeString = now.toLocaleTimeString('en-GB', options);
-            footerClock.textContent = `© 2026 RITESH DIWAN — TELEMETRY IST: ${timeString}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dossier-theme') || 'light';
+            setTheme(savedTheme);
+        });
     </script>
 </body>
 </html>

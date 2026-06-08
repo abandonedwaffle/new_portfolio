@@ -3,550 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ritesh Diwan — Portfolio & Tape Deck</title>
-    <meta name="description" content="Personal portfolio and technical dossier deck of developer Ritesh Diwan. Cassette futurism design.">
+    <title>Ritesh Diwan — Portfolio Dossier</title>
+    <meta name="description" content="Personal developer portfolio of Ritesh Diwan. Minimalist single-page website.">
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="light-chassis">
+<body>
 
+    <!-- Mechanical Click Sound -->
     <audio id="switchSound" src="click.mp3" preload="auto"></audio>
 
-    <header>
-        <div class="header-inner">
-            <a href="#" class="site-logo">
-                <div class="brand">TEAC <span>RD-80</span></div>
-                <span class="brand-model">AUTOMATIC REVERSE // SOLID STATE</span>
-            </a>
-            <nav role="navigation">
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="blog.html">Blog</a>
-                <a href="#contact">Contact</a>
-                <button class="theme-btn" id="themeBtn" aria-label="Toggle Light Beige or Dark Charcoal chassis">CHASSIS: BEIGE</button>
+    <div class="app-container">
+        
+        <!-- SIDEBAR TREE EXPLORER -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-title">ritesh-diwan/</div>
+                <div class="brand-subtitle">developer portfolio</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="tree-explorer">
+                    
+                    <!-- About Me node -->
+                    <div class="tree-node nav-item active" data-buffer="about">
+                        <span class="node-icon icon-file"></span>
+                        <a onclick="switchBuffer('about')">about_me.md</a>
+                    </div>
+                    
+                    <!-- Projects node -->
+                    <div class="tree-node nav-item" data-buffer="projects">
+                        <span class="node-icon icon-file"></span>
+                        <a onclick="switchBuffer('projects')">projects.json</a>
+                    </div>
+                    
+                    <!-- Blogs directory node -->
+                    <div class="tree-node nav-item" data-buffer="blogs">
+                        <span class="node-icon icon-folder"></span>
+                        <a onclick="switchBuffer('blogs')">blogs/</a>
+                    </div>
+                    
+                    <!-- Stack node -->
+                    <div class="tree-node nav-item last-node" data-buffer="stack">
+                        <span class="node-icon icon-file"></span>
+                        <a onclick="switchBuffer('stack')">tech_stack.yaml</a>
+                    </div>
+                    
+                </div>
             </nav>
-        </div>
-    </header>
 
-    <main>
-        <!-- HERO CASSETTE GEAR & LEVEL METERS -->
-        <div class="deck-grid">
-            <!-- Cassette player deck visual drive -->
-            <div class="tape-player-chassis" id="tapePlayer">
-                <!-- Cassette window cavity -->
-                <div class="tape-window" id="tapeWindow">
-                    <!-- Cassette tape graphic -->
-                    <div class="cassette-tape">
-                        <div class="tape-sticker">
-                            <span class="tape-title" id="tapeTitle">RITESH DIWAN // MIX-TAPE V.01</span>
-                            <div class="tape-stripe"></div>
-                            <div style="display:flex; justify-content:space-between; font-size:0.55rem; color:#2b2520; font-family:var(--font-mono); font-weight:bold; margin-top:2px;">
-                                <span>SIDE A</span>
-                                <span>DOLBY B-C NR</span>
-                                <span>120 µs</span>
-                            </div>
-                        </div>
-                        <!-- Spindles in center window -->
-                        <div class="tape-spools">
-                            <div class="spool">
-                                <div class="spool-gears"></div>
-                            </div>
-                            <div class="spool">
-                                <div class="spool-gears"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tape deck controls keyboard -->
-                <div class="control-deck">
-                    <button class="key-btn" id="rewBtn" title="Rewind">REW</button>
-                    <button class="key-btn" id="ffBtn" title="Fast Forward">FF</button>
-                    <button class="key-btn play-btn" id="playBtn" title="Play Tape">PLAY</button>
-                    <button class="key-btn" id="pauseBtn" title="Pause Tape">PAUSE</button>
-                    <button class="key-btn" id="stopBtn" title="Stop Tape">STOP</button>
+            <div class="sidebar-footer">
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme">
+                    theme: light
+                </button>
+                <div class="sidebar-info">
+                    Single-page dossier.<br>
+                    Redesigned 2026.
                 </div>
             </div>
-
-            <!-- Specs Sheet & Dynamic VU Level Meters -->
-            <aside class="specs-panel">
-                <h2 class="specs-title">MAINFRAME SPECIFICATION</h2>
+        </aside>
+        
+        <!-- MAIN CONTENT WORKSPACE -->
+        <main class="main-workspace">
+            <div class="content-container">
                 
-                <div class="spec-line">
-                    <span class="spec-label">SYSTEM STATE</span>
-                    <span class="spec-value" style="color:var(--accent-orange);">READY</span>
+                <!-- ABOUT ME BUFFER -->
+                <div id="buffer-about" class="buffer-content" style="display: block;">
+                    <h1>About Me</h1>
+                    <p class="post-meta">System dossier // active</p>
+                    
+                    <p>I'm a self-taught developer from India, building real products while working through <strong>The Odin Project</strong> curriculum. I don't wait until I'm ready — I ship things, break them, audit them, and make them better.</p>
+                    
+                    <p>My approach is systems-first. Before writing a line of code, I think about data models, user flows, and what the core software interface is actually trying to solve. The visual presentation always emerges from function, not decoration.</p>
+                    
+                    <p>I'm drawn to projects with a strong editorial identity — software that has a clear point of view and commits to it completely.</p>
+                    
+                    <h2>Core Directives &amp; Principles</h2>
+                    
+                    <div class="meta-grid">
+                        <div class="meta-row">
+                            <span class="meta-label">01. Ship</span>
+                            <span class="meta-value"><strong>SHIP REAL THINGS</strong> — Side projects that go live teach more than a thousand tutorials.</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">02. Models</span>
+                            <span class="meta-value"><strong>DATA ARCHITECTURE FIRST</strong> — Design the data model before the interface. Structure outlasts style.</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">03. Audits</span>
+                            <span class="meta-value"><strong>SELF-AUDIT CODE</strong> — Trust but verify. Always run checks against your own assumptions.</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">04. Design</span>
+                            <span class="meta-value"><strong>FUNCTIONAL DESIGN</strong> — Aesthetic is not decoration. It is the product's interface argument.</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">05. Intelligence</span>
+                            <span class="meta-value"><strong>AI AS HANDS, NOT BRAIN</strong> — Use tools to build faster, but the logic design must remain human.</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">06. Shipped</span>
+                            <span class="meta-value"><strong>FINISH THE MISSION</strong> — The gap between 90% and shipped is where quality is decided.</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Transmitter Outbound Wires</h2>
+                    <p>Feel free to reach out through any of the channels below:</p>
+                    <ul>
+                        <li>Email Channel: <a href="mailto:diwan.devs@yahoo.com">diwan.devs@yahoo.com</a></li>
+                        <li>Github Link: <a href="https://github.com/abandonedwaffle" target="_blank">abandonedwaffle</a></li>
+                        <li>LinkedIn Index: <a href="https://www.linkedin.com/in/ritesh-diwan-327339232/" target="_blank">ritesh-diwan</a></li>
+                    </ul>
                 </div>
                 
-                <div class="spec-line">
-                    <span class="spec-label">SECTOR CODE</span>
-                    <span class="spec-value">INDIA (IST)</span>
-                </div>
-
-                <div class="spec-line">
-                    <span class="spec-label">DRIVER BUILD</span>
-                    <span class="spec-value">ODIN PROJECT JS</span>
-                </div>
-
-                <div class="spec-line">
-                    <span class="spec-label">GITHUB REEL</span>
-                    <span class="spec-value"><a href="https://github.com/abandonedwaffle" target="_blank">abandonedwaffle</a></span>
-                </div>
-
-                <div class="spec-line">
-                    <span class="spec-label">LINKEDIN SLOT</span>
-                    <span class="spec-value"><a href="https://www.linkedin.com/in/ritesh-diwan-327339232/" target="_blank">ritesh-diwan</a></span>
-                </div>
-
-                <!-- VU Level Indicators -->
-                <div class="vu-meter-group">
-                    <span class="vu-meter-label">LEVEL METER L (SIGNAL)</span>
-                    <div class="vu-channel" id="vuLeft">
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment yellow-lvl"></div>
-                        <div class="vu-segment yellow-lvl"></div>
-                        <div class="vu-segment red-lvl"></div>
-                        <div class="vu-segment red-lvl"></div>
-                    </div>
-                    <span class="vu-meter-label">LEVEL METER R (SYSTEM)</span>
-                    <div class="vu-channel" id="vuRight">
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment green-lvl"></div>
-                        <div class="vu-segment yellow-lvl"></div>
-                        <div class="vu-segment yellow-lvl"></div>
-                        <div class="vu-segment red-lvl"></div>
-                        <div class="vu-segment red-lvl"></div>
+                <!-- PROJECTS BUFFER -->
+                <div id="buffer-projects" class="buffer-content" style="display: none;">
+                    <h1>Projects</h1>
+                    <p class="post-meta">Diagnostic registry // active</p>
+                    
+                    <p>Below is a curated record of applications designed and shipped independently.</p>
+                    
+                    <div class="project-card">
+                        <h3>SimplyCars.in</h3>
+                        <div class="meta-grid">
+                            <div class="meta-row">
+                                <span class="meta-label">Status</span>
+                                <span class="meta-value">Active // Live</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Capacity</span>
+                                <span class="meta-value">1.44 MB</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-label">Deploy Code</span>
+                                <span class="meta-value"><a href="https://simplycars.in" target="_blank">simplycars.in →</a></span>
+                            </div>
+                        </div>
+                        <p>A technical car database for the Indian market. Bureau-grade spec sheets for every trim, variant, and powertrain — built around a relational data model linking manufacturers, brands, engines, and variants. Single-admin Firebase backend with a fully public-facing dossier system.</p>
+                        <ul class="tag-list">
+                            <li class="tag">Firebase</li>
+                            <li class="tag">Firestore</li>
+                            <li class="tag">Vanilla JS</li>
+                            <li class="tag">HTML5 / CSS3</li>
+                        </ul>
                     </div>
                 </div>
-            </aside>
-        </div>
-
-        <!-- SELECTED WORK DRIVES -->
-        <section id="projects" class="fade-in">
-            <div class="section-header">
-                <h2 class="section-title">PROJECT DRIVES</h2>
-                <span class="section-specs">TAPE DRIVE SECTOR: A-01</span>
+                
+                <!-- BLOGS DIRECTORY BUFFER -->
+                <div id="buffer-blogs" class="buffer-content" style="display: none;">
+                    <h1>Blogs</h1>
+                    <p class="post-meta">System archives // logs</p>
+                    
+                    <p>Below is a chronological directory of engineering blogs and publications. Click on any title to open the article page.</p>
+                    
+                    <div class="blogs-list">
+                        <div class="blog-item">
+                            <div class="blog-item-title">
+                                <a href="posts/why-structure-outlasts-style.html">Why Data Structure Outlasts Interface Style →</a>
+                            </div>
+                            <p class="blog-item-desc">Oct 24, 2025 • A deep dive into mapping database relations before writing visual rules.</p>
+                        </div>
+                        
+                        <div class="blog-item">
+                            <div class="blog-item-title">
+                                <a href="posts/vanilla-js-vs-framework-bloat.html">Vanilla JavaScript and CSS vs. Framework Bloat →</a>
+                            </div>
+                            <p class="blog-item-desc">Nov 12, 2025 • Exploring the tactile speed of standard-compliant web architectures.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- TECH STACK BUFFER -->
+                <div id="buffer-stack" class="buffer-content" style="display: none;">
+                    <h1>Tech Stack</h1>
+                    <p class="post-meta">System diagnostics // active</p>
+                    
+                    <p>Diagnostic checklist of languages, storage environments, and operational tooling.</p>
+                    
+                    <h2>Languages &amp; Core Standards</h2>
+                    <div class="meta-grid">
+                        <div class="meta-row">
+                            <span class="meta-label">HTML5</span>
+                            <span class="meta-value">90% // Semantic Layouts, Accessibility, Core Structure</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">CSS3</span>
+                            <span class="meta-value">85% // Grid Systems, Custom Properties, Flexbox, Responsive Designs</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">JavaScript</span>
+                            <span class="meta-value">80% // ES6+, DOM Manipulations, Fetch/Async operations</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Backend &amp; Database Environments</h2>
+                    <div class="meta-grid">
+                        <div class="meta-row">
+                            <span class="meta-label">Firebase</span>
+                            <span class="meta-value">75% // Firestore Database, Security Rules, Authentication</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Node.js</span>
+                            <span class="meta-value">Learning // REST API design, package ecosystems</span>
+                        </div>
+                    </div>
+                    
+                    <h2>Systems &amp; Workflows</h2>
+                    <div class="meta-grid">
+                        <div class="meta-row">
+                            <span class="meta-label">Git</span>
+                            <span class="meta-value">85% // Command Line Versioning, Branch mappings</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">Google Stitch</span>
+                            <span class="meta-value">60% // Integration operations</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <div class="section-body">
-                <div class="project-grid">
-                    <article class="project-block">
-                        <div class="project-block-header">
-                            <span>REEL FILE: SIMPLYCARS.IN</span>
-                            <span>CAPACITY: 1.44 MB</span>
-                        </div>
-                        <div class="project-block-body">
-                            <div class="project-info">
-                                <h3 class="project-name">SimplyCars.in</h3>
-                                <p class="project-desc">
-                                    A technical car database for the Indian market. Bureau-grade spec sheets for every trim,
-                                    variant, and powertrain — built around a relational data model linking manufacturers,
-                                    brands, engines, and variants. Single-admin Firebase backend with a fully public-facing
-                                    dossier system. Designed, architected, and shipped independently.
-                                </p>
-                                <div class="project-tags">
-                                    <span class="project-tag">Firebase</span>
-                                    <span class="project-tag">Firestore</span>
-                                    <span class="project-tag">Vanilla JS</span>
-                                    <span class="project-tag">HTML / CSS</span>
-                                    <span class="project-tag">Live</span>
-                                </div>
-                            </div>
-                            <div class="project-btn-col">
-                                <a href="https://simplycars.in" target="_blank" class="action-btn">LAUNCH REEL →</a>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT DIRECTIVES & PRINCIPLES -->
-        <section id="about" class="fade-in">
-            <div class="section-header">
-                <h2 class="section-title">CHASSIS MANUAL</h2>
-                <span class="section-specs">OPERATIONAL DIRECTIVES: B-02</span>
-            </div>
-            <div class="section-body">
-                <div class="about-grid">
-                    <div class="about-bio">
-                        <p>
-                            I'm a self-taught developer from India, building real products while working through
-                            <strong>The Odin Project</strong> curriculum. I don't wait until I'm ready — I ship things, break them,
-                            audit them, and make them better.
-                        </p>
-                        <p>
-                            My approach is systems-first. Before writing a line of code, I think about data models,
-                            user flows, and what the core software interface is actually trying to solve. The visual presentation 
-                            always emerges from function, not decoration.
-                        </p>
-                        <p>
-                            I'm drawn to projects with a strong editorial identity — software that has a clear point of
-                            view and commits to it completely.
-                        </p>
-                    </div>
-                    <div>
-                        <div class="principles-deck">
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">01</span>
-                                    <span>SHIP REAL THINGS</span>
-                                </div>
-                                <p class="principle-desc">Side projects that go live teach more than a thousand tutorials.</p>
-                            </div>
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">02</span>
-                                    <span>DATA ARCHITECTURE FIRST</span>
-                                </div>
-                                <p class="principle-desc">Design the data model before the interface. Structure outlasts style.</p>
-                            </div>
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">03</span>
-                                    <span>SELF-AUDIT CODE</span>
-                                </div>
-                                <p class="principle-desc">Trust but verify. Always run checks against your own assumptions.</p>
-                            </div>
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">04</span>
-                                    <span>FUNCTIONAL DESIGN</span>
-                                </div>
-                                <p class="principle-desc">Aesthetic is not decoration. It is the product's interface argument.</p>
-                            </div>
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">05</span>
-                                    <span>AI AS HANDS, NOT BRAIN</span>
-                                </div>
-                                <p class="principle-desc">Use tools to build faster, but the logic design must remain human.</p>
-                            </div>
-                            <div class="principle-card">
-                                <div class="principle-header">
-                                    <span style="color:var(--accent-orange)">06</span>
-                                    <span>FINISH THE MISSION</span>
-                                </div>
-                                <p class="principle-desc">The gap between 90% and shipped is where quality is decided.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Technical Skills Gages -->
-                <div class="skills-grid">
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>HTML5 / LAYOUT</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 90%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>CSS3 / GRID SYSTEM</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>JAVASCRIPT (ES6+)</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 80%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>FIREBASE / FIRESTORE</span>
-                            <span>75%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 75%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>GIT VERSIONING</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 85%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>GOOGLE STITCH</span>
-                            <span>60%</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 60%;"></div>
-                        </div>
-                    </div>
-                    <div class="skill-slot">
-                        <div class="skill-header">
-                            <span>NODE.JS MAINFRAME</span>
-                            <span>LEARNING</span>
-                        </div>
-                        <div class="skill-gauge">
-                            <div class="skill-fill" style="width: 40%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT TRANSMISSION -->
-        <section id="contact" class="fade-in">
-            <div class="section-header">
-                <h2 class="section-title">TRANSMITTER LINK</h2>
-                <span class="section-specs">OUTBOUND WIRES: C-03</span>
-            </div>
-            <div class="section-body">
-                <div class="contact-grid">
-                    <div>
-                        <p class="contact-quote">LET'S BUILD SOMETHING WORTH LOOKING AT.</p>
-                        <p style="color:var(--text-muted); font-size:0.85rem; margin-top:1.25rem; line-height:1.6;">
-                            Chassis lines open for collaborations, interface contracts, database designs,
-                            or detailing motorcar spec databases for the Indian automotive market.
-                        </p>
-                    </div>
-                    <div class="contact-links-list">
-                        <a href="mailto:diwan.devs@yahoo.com" class="contact-button">
-                            <span>EMAIL CHANNEL</span>
-                            <span class="contact-lbl">diwan.devs@yahoo.com</span>
-                        </a>
-                        <a href="https://github.com/abandonedwaffle" target="_blank" class="contact-button">
-                            <span>GITHUB LINK</span>
-                            <span class="contact-lbl">abandonedwaffle</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/ritesh-diwan-327339232/" target="_blank" class="contact-button">
-                            <span>LINKEDIN INDEX</span>
-                            <span class="contact-lbl">ritesh-diwan</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-inner">
-            <span class="footer-left" id="footerClock">© 2026 RITESH DIWAN</span>
-            <div class="footer-dot-group">
-                <div class="footer-led"></div>
-                <span>AUTO-REVERSE TAPE DECK</span>
-            </div>
-        </div>
-    </footer>
+        </main>
+    </div>
 
     <script>
-        // Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.05 });
-
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Switch Sound and Chassis Theme Toggle
-        const themeBtn = document.getElementById('themeBtn');
         const switchSound = document.getElementById('switchSound');
-        
+
         function playClickSound() {
-            switchSound.currentTime = 0;
-            switchSound.play().catch(err => console.log("Audio play blocked."));
+            if (switchSound) {
+                switchSound.currentTime = 0;
+                switchSound.play().catch(err => console.log("Audio play blocked."));
+            }
         }
 
-        // Apply theme color parameters
-        const applyTheme = (isDark) => {
-            if (isDark) {
-                document.body.classList.add('dark');
-                themeBtn.textContent = "CHASSIS: CHARCOAL";
-            } else {
-                document.body.classList.remove('dark');
-                themeBtn.textContent = "CHASSIS: BEIGE";
-            }
-        };
+        // Swaps dynamic buffers
+        function switchBuffer(bufferId) {
+            playClickSound();
 
-        const isDarkDefault = localStorage.getItem('rd-chassis-theme') === 'dark';
-        applyTheme(isDarkDefault);
+            // Hide currently active buffers
+            document.querySelectorAll('.buffer-content').forEach(el => {
+                el.style.display = 'none';
+            });
+
+            // Show selected content buffer
+            const targetBuffer = document.getElementById(`buffer-${bufferId}`);
+            if (targetBuffer) {
+                targetBuffer.style.display = 'block';
+            }
+
+            // Update active states in the directory tree list
+            document.querySelectorAll('.tree-node.nav-item').forEach(item => {
+                const itemBuf = item.getAttribute('data-buffer');
+                if (itemBuf === bufferId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Scroll right container back to top
+            document.querySelector('.main-workspace').scrollTop = 0;
+        }
+
+        // Theme Toggle Manager
+        const themeBtn = document.getElementById('themeToggleBtn');
+        
+        function setTheme(themeName) {
+            if (themeName === 'dark') {
+                document.body.classList.add('theme-dark');
+                themeBtn.textContent = 'theme: dark';
+            } else {
+                document.body.classList.remove('theme-dark');
+                themeBtn.textContent = 'theme: light';
+            }
+            localStorage.setItem('dossier-theme', themeName);
+        }
 
         themeBtn.addEventListener('click', () => {
             playClickSound();
-            const currentDark = document.body.classList.contains('dark');
-            applyTheme(!currentDark);
-            localStorage.setItem('rd-chassis-theme', !currentDark ? 'dark' : 'light');
+            const isDark = document.body.classList.contains('theme-dark');
+            setTheme(isDark ? 'light' : 'dark');
         });
 
-        // Dynamic Footer Clock (IST)
-        function updateTime() {
-            const footerClock = document.getElementById('footerClock');
-            const now = new Date();
-            const options = { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                timeZone: 'Asia/Kolkata',
-                hour12: false 
-            };
-            const timeString = now.toLocaleTimeString('en-GB', options);
-            footerClock.textContent = `© 2026 RITESH DIWAN — TELEMETRY IST: ${timeString}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
-
-        // TAPE PLAYER & CONTROLS SCRIPTING
-        const tapePlayer = document.getElementById('tapePlayer');
-        const tapeTitle = document.getElementById('tapeTitle');
-        const playBtn = document.getElementById('playBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const pauseBtn = document.getElementById('pauseBtn');
-        const ffBtn = document.getElementById('ffBtn');
-        const rewBtn = document.getElementById('rewBtn');
-        
-        const removeKeyActives = () => {
-            document.querySelectorAll('.control-deck .key-btn').forEach(btn => btn.classList.remove('active'));
-        };
-
-        playBtn.addEventListener('click', () => {
-            playClickSound();
-            removeKeyActives();
-            playBtn.classList.add('active');
-            tapePlayer.classList.add('playing');
-            tapeTitle.textContent = "PLAYING: RITESH DIWAN // MIX-TAPE V.01";
-        });
-
-        stopBtn.addEventListener('click', () => {
-            playClickSound();
-            removeKeyActives();
-            stopBtn.classList.add('active');
-            tapePlayer.classList.remove('playing');
-            tapeTitle.textContent = "STOPPED: RD-80 CASSETTE";
-            resetVU();
-        });
-
-        pauseBtn.addEventListener('click', () => {
-            playClickSound();
-            removeKeyActives();
-            pauseBtn.classList.add('active');
-            tapePlayer.classList.remove('playing');
-            tapeTitle.textContent = "PAUSED: RD-80 CASSETTE";
-        });
-
-        // Fast Forward and Rewind acts as section navigation triggers
-        const sectionsList = ['projects', 'about', 'contact'];
-        let currentSectionIdx = -1;
-
-        ffBtn.addEventListener('click', () => {
-            playClickSound();
-            removeKeyActives();
-            ffBtn.classList.add('active');
-            setTimeout(() => ffBtn.classList.remove('active'), 250);
-            
-            // Advance section
-            currentSectionIdx = (currentSectionIdx + 1) % sectionsList.length;
-            const target = document.getElementById(sectionsList[currentSectionIdx]);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                // Make spools spin fast briefly
-                tapePlayer.classList.add('playing');
-                setTimeout(() => {
-                    if (!playBtn.classList.contains('active')) {
-                        tapePlayer.classList.remove('playing');
-                    }
-                }, 800);
-            }
-        });
-
-        rewBtn.addEventListener('click', () => {
-            playClickSound();
-            removeKeyActives();
-            rewBtn.classList.add('active');
-            setTimeout(() => rewBtn.classList.remove('active'), 250);
-            
-            // Regress section
-            currentSectionIdx = currentSectionIdx - 1;
-            if (currentSectionIdx < 0) currentSectionIdx = sectionsList.length - 1;
-            const target = document.getElementById(sectionsList[currentSectionIdx]);
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth' });
-                // Make spools spin fast briefly
-                tapePlayer.classList.add('playing');
-                setTimeout(() => {
-                    if (!playBtn.classList.contains('active')) {
-                        tapePlayer.classList.remove('playing');
-                    }
-                }, 800);
-            }
-        });
-
-        // Auto-play the spools on load for immediate cassette movement aesthetics
-        playBtn.click();
-
-        // DYNAMIC VU METERS SCRIPTS
-        const vuLeft = document.getElementById('vuLeft');
-        const vuRight = document.getElementById('vuRight');
-        const leftSegments = vuLeft.querySelectorAll('.vu-segment');
-        const rightSegments = vuRight.querySelectorAll('.vu-segment');
-
-        function animateVU() {
-            // Only bounce needle levels if spools are spinning (playing)
-            if (tapePlayer.classList.contains('playing')) {
-                const leftLevel = Math.floor(Math.random() * 9);
-                const rightLevel = Math.floor(Math.random() * 9);
-
-                leftSegments.forEach((seg, idx) => {
-                    if (idx <= leftLevel) seg.classList.add('active');
-                    else seg.classList.remove('active');
-                });
-
-                rightSegments.forEach((seg, idx) => {
-                    if (idx <= rightLevel) seg.classList.add('active');
-                    else seg.classList.remove('active');
-                });
-            }
-            setTimeout(animateVU, 120);
-        }
-
-        function resetVU() {
-            leftSegments.forEach(seg => seg.classList.remove('active'));
-            rightSegments.forEach(seg => seg.classList.remove('active'));
-        }
-
-        animateVU();
-
-        // VU meter flash on scroll activities
-        window.addEventListener('scroll', () => {
-            if (!tapePlayer.classList.contains('playing')) {
-                const surgeL = Math.floor(Math.random() * 6);
-                const surgeR = Math.floor(Math.random() * 6);
-                leftSegments.forEach((seg, idx) => {
-                    if (idx <= surgeL) seg.classList.add('active');
-                    else seg.classList.remove('active');
-                });
-                rightSegments.forEach((seg, idx) => {
-                    if (idx <= surgeR) seg.classList.add('active');
-                    else seg.classList.remove('active');
-                });
-                clearTimeout(window.scrollVUTimeout);
-                window.scrollVUTimeout = setTimeout(resetVU, 150);
-            }
+        // Initialize state
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('dossier-theme') || 'light';
+            setTheme(savedTheme);
         });
     </script>
 </body>
